@@ -28,7 +28,7 @@ Score.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "user",
+    modelName: "score",
   }
 );
 
