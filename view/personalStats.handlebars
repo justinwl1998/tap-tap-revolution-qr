@@ -1,0 +1,20 @@
+
+<div>
+    <header><button id="name">{{name}}</button>
+    {{#if loggedIn}}
+    <button id="logOut">Logout</button>
+    {{/if}}</header>
+    <h1 id="usersName"> {{name}} </h1>
+    <div>
+        <h2 id="highscore">Highest Score: {{highscore}} </h2>
+        <h2 id="totalRuns">Runs: {{runs}} </h2>
+        <h1 id="achievements">Achievements: </h1>
+        {{#for achievements}}
+        <div id="achivementTypes">
+            {{achievementName}} - {{achivementRequirement}}
+        </div>
+        {{/for}}
+    </div>
+</div>
+
+
