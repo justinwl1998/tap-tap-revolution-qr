@@ -1,0 +1,9 @@
+#gameWindow {
+    border: 1px double black;
+    height: 500px;
+    margin: 0 auto;
+}
+
+#startGame {
+    width: 25%;
+}

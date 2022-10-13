@@ -21,6 +21,7 @@
   "homepage": "https://github.com/justinwl1998/tap-tap-revolution-qr#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "browserify": "^17.0.0",
     "connect-session-sequelize": "^7.1.5",
     "dotenv": "^16.0.3",
     "express": "4.16",

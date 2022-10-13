@@ -1,8 +1,19 @@
+const timeMax = 10.00;
+let timeInterval;
+
 class Game {
     constructor() {
         this.score = 0;
         this.running = false;
         this.curInput;
+    }
+
+    start() {
+        console.log("Hah.")
+    }
+
+    countdown(ver) {
+
     }
 
     getScore() {
@@ -25,7 +36,9 @@ class Game {
         return this.curInput;
     }
 }
-
 const app = new Game();
 
-console.log(app.getScore());
+// console.log(app.getScore());
+// app.incrementScore();
+// console.log(app.getScore());
+
