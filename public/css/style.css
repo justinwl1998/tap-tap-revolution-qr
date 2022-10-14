@@ -20,3 +20,33 @@ body {
     margin-left: 42%;
     margin-top: 20%;
 }
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+#gameWindow {
+    --angle: 0deg;
+    background-color: black;
+    color: white;
+    height: 500px;
+    border: 5px solid;
+    border-image: linear-gradient(var(--angle), #000, #c471ed, #f64f59) 1;
+    animation: 2s rotate linear infinite;
+}
+
+#gameWindow:focus {
+    outline: none;
+}
+
+@keyframes rotate {
+    to {
+      --angle: 360deg;
+    }
+}
+
+#inputViewer {
+    transition: opacity 0.25s;
+}
