@@ -19,6 +19,7 @@ class Game {
         gameWindow.focus();
         this.score = 0;
         scoreViewer.textContent = this.score;
+        setTimeout(function () { inputViewer.style.opacity = 0; }, 250);
         this.running = true;
         startButton.disabled = true;
         this.changeInput();
@@ -48,22 +49,8 @@ class Game {
 
     changeInput() {
         this.curInput = Math.floor(Math.random() * (40 - 37 + 1) + 37);
-
-        switch(this.curInput) {
-            case 37:
-                inputViewer.textContent = 'LEFT';
-                break;
-            case 38:
-                inputViewer.textContent = 'UP';
-                break;                
-            case 39:
-                inputViewer.textContent = 'RIGHT';
-                break;
-            case 40:
-                inputViewer.textContent = 'DOWN';
-                break;
-        
-        }
+        inputViewer.style.opacity = 1;
+        setTimeout(function () { inputViewer.style.opacity = 0; }, 250);
     }
 
     getCurInput() {
