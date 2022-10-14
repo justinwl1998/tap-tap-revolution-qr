@@ -6,19 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Registry</title>
   <link rel="stylesheet" href="/css/jass.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-    <div class="col-md-6">
+  <div class="col-md-6">
     <button id="login">Login</button>
+    <button id="signup">Sign Up</button>
   </div>
-    <div id="userName">
-    <button id="name">{{name}}</button>
+  <div id="userName">
+   
     {{#if loggedIn}}
     <button id="logOut">Logout</button>
     {{/if}}
-    </div>
+  </div>
+    {{#if loggedIn}}
     {{{body}}}
+    {{/if}}
 </body>
 
 </html>
