@@ -1,0 +1,20 @@
+
+
+{{#if loggedIn}}
+<div id="gameWindow" class="row align-center mb-5" tabindex="0">
+
+    {{!-- <button id="startGame">Start</button>
+    <btn id="highScores">Highscores</btn> --}}
+    <h3 id="timer"> </h3>
+    <h3 id="score"> </h3>
+
+    {{!-- todo: replace with images of arrows rather than text --}}
+    <div id="inputViewer"> </div>
+
+    <button id="startGame" class="btn btn-primary" onclick="app.start()">Start</button>
+
+</div>
+{{/if}}
+{{!-- {{#if loggedIn}} --}}
+<script src="/js/index.js"></script>
+{{!-- {{/if}} --}}

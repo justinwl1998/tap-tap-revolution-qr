@@ -11,12 +11,14 @@
 </head>
 
 <body>
-    <div class="col-md-6">
+  {{#if loggedIn}}
+    {{else}}
+    {{!-- <div class="col-md-6">
       <button id="login">Login</button>
       <button id="signup">Sign Up</button>
-    </div>
-    <div id="userName">
-      <button id="name">{{name}}</button>
+    </div> --}}
+  {{/if}}
+    <div id="logOutDiv">
       {{#if loggedIn}}
       <button id="logOut">Logout</button>
       
