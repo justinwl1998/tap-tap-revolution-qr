@@ -13,7 +13,9 @@ router.get("/", async (req, res) => {
 
 router.get("/stats", async (req, res) => {
   try {
-    res.render("personalStats");
+    res.render("personalStats", {
+      doNotShowButtons: true
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -21,7 +23,9 @@ router.get("/stats", async (req, res) => {
 
 router.get("/scores", async (req, res) => {
   try {
-    res.render("highScores");
+    res.render("highScores", {
+      doNotShowButtons: true
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -29,7 +33,9 @@ router.get("/scores", async (req, res) => {
 
 router.get("/signup", async (req, res) => {
   try {
-    res.render("signupPage");
+    res.render("signupPage", {
+      doNotShowButtons: true
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -37,7 +43,9 @@ router.get("/signup", async (req, res) => {
 
 router.get("/login", async (req, res) => {
   try {
-    res.render("loginPage");
+    res.render("loginPage", {
+      doNotShowButtons: true
+    });
   } catch (err) {
     res.status(500).json(err);
   }

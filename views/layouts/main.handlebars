@@ -11,10 +11,13 @@
 </head>
 
 <body>
+    {{#if doNotShowButtons}}
+    {{else}}
     <div class="col-md-6">
       <button id="login">Login</button>
       <button id="signup">Sign Up</button>
     </div>
+    {{/if}}
     <div id="userName">
       <button id="name">{{name}}</button>
       {{#if loggedIn}}
