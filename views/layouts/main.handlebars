@@ -11,12 +11,17 @@
 </head>
 
 <body>
+
+  {{!-- this if-statement is as confusing to read as it was to understand not having the login/signup buttons appear on certain pages --}}
     {{#if doNotShowButtons}}
+    {{else}}
+    {{#if loggedIn}}
     {{else}}
     <div class="col-md-6">
       <button id="login">Login</button>
       <button id="signup">Sign Up</button>
     </div>
+    {{/if}}
     {{/if}}
     <div id="userName">
       <button id="name">{{name}}</button>
@@ -34,6 +39,7 @@
 </body>
 
 <script src="/js/redirects.js"></script>
+<script src="/js/logout.js"></script>
 
 </html>
 
