@@ -5,7 +5,7 @@ const withAuth = require("../utils/auth");
 router.get("/", async (req, res) => {
   try {
     // Pass serialized data and session flag into template
-    console.log(req.session.logged_in);
+
     res.render("homePage", {
       loggedIn: req.session.logged_in 
     });
@@ -16,6 +16,20 @@ router.get("/", async (req, res) => {
 
 router.get("/stats", async (req, res) => {
   try {
+    const scoreData = await Score.findOne({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        }
+      ],      
+      where: {
+        user_id: req.session.user_id,
+      }
+    });
+
+    
+
     res.render("personalStats", {
       doNotShowButtons: true,
       loggedIn: req.session.logged_in 
@@ -27,9 +41,33 @@ router.get("/stats", async (req, res) => {
 
 router.get("/scores", async (req, res) => {
   try {
+    const scoreData = await Score.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        }
+      ],
+      limit: 10,
+      order: [
+        ['score', 'DESC']
+      ]
+    });
+
+
+    // This is how to get user data to show when a user is logged in
+    // its not good but it works
+    const userTest = await User.findByPk(req.session.user_id);
+    const userGet = userTest.get({ plain: true });
+
+    console.log(userGet);
+
+    const scores = scoreData.map((score) => score.get({ plain: true }));
+
     res.render("highScores", {
       doNotShowButtons: true,
-      loggedIn: req.session.logged_in 
+      loggedIn: req.session.logged_in,
+      scores
     });
   } catch (err) {
     res.status(500).json(err);
