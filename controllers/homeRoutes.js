@@ -4,17 +4,48 @@ const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
+    console.log(req.session.user_id);
     // Pass serialized data and session flag into template
-    res.render("homePage");
+    const userData = await User.findByPk(req.session.user_id);
+    console.log(userData);
+
+    if (userData === null) {
+      res.render("homePage", {
+        loggedIn: req.session.logged_in
+      });
+    }
+    else {
+      const user = userData.get({ plain: true });
+      res.render("homePage", {
+        loggedIn: req.session.logged_in,
+        user
+      });
+    }
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 router.get("/stats", async (req, res) => {
+  // todo: add more queries and entries to go off of?
   try {
+    const scoreData = await Score.findOne({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        }
+      ],      
+      where: {
+        user_id: req.session.user_id,
+      }
+    });
+
+    
+
     res.render("personalStats", {
-      doNotShowButtons: true
+      doNotShowButtons: true,
+      loggedIn: req.session.logged_in 
     });
   } catch (err) {
     res.status(500).json(err);
@@ -23,8 +54,34 @@ router.get("/stats", async (req, res) => {
 
 router.get("/scores", async (req, res) => {
   try {
+    const scoreData = await Score.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        }
+      ],
+      limit: 10,
+      order: [
+        ['score', 'DESC']
+      ]
+    });
+
+
+    // This is how to get user data to show when a user is logged in
+    // its not good but it works
+    const userTest = await User.findByPk(req.session.user_id);
+    const userGet = userTest.get({ plain: true });
+
+    console.log(userGet);
+
+    const scores = scoreData.map((score) => score.get({ plain: true }));
+
     res.render("highScores", {
-      doNotShowButtons: true
+      doNotShowButtons: true,
+      loggedIn: req.session.logged_in,
+      scores,
+      userGet
     });
   } catch (err) {
     res.status(500).json(err);
@@ -34,7 +91,8 @@ router.get("/scores", async (req, res) => {
 router.get("/signup", async (req, res) => {
   try {
     res.render("signupPage", {
-      doNotShowButtons: true
+      doNotShowButtons: true,
+      loggedIn: req.session.logged_in 
     });
   } catch (err) {
     res.status(500).json(err);
@@ -44,7 +102,8 @@ router.get("/signup", async (req, res) => {
 router.get("/login", async (req, res) => {
   try {
     res.render("loginPage", {
-      doNotShowButtons: true
+      doNotShowButtons: true,
+      loggedIn: req.session.logged_in 
     });
   } catch (err) {
     res.status(500).json(err);

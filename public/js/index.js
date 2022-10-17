@@ -88,6 +88,8 @@ class Game {
     checkInput(userInput) {
         return userInput === this.curInput;
     }
+
+    //todo : add function for posting new high scores if it is greater than a user's current high score
 }
 
 const startTimer = () => {
@@ -143,5 +145,23 @@ gameWindow.onkeydown = function(e) {
 }
 
 const app = new Game();
+
+const test = async () => {
+    const res = await fetch('/api/score', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (res.ok) {
+        let userScore = await res.json();
+        console.log(userScore);
+    }
+    else {
+        alert(res.statusText);
+    }    
+}
+
+document.querySelector('#testQuery')
+    .addEventListener("click", test);
 
 
