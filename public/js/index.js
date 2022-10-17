@@ -49,8 +49,36 @@ class Game {
 
     changeInput() {
         this.curInput = Math.floor(Math.random() * (40 - 37 + 1) + 37);
+        inputViewer.style.transition = "opacity 0s";
         inputViewer.style.opacity = 1;
-        setTimeout(function () { inputViewer.style.opacity = 0; }, 250);
+    
+        switch(this.curInput) {
+            case 37:
+                inputViewer.textContent = 'LEFT';
+                break;
+            case 38:
+                inputViewer.textContent = 'UP';
+                break;                
+            case 39:
+                inputViewer.textContent = 'RIGHT';
+                break;
+            case 40:
+                inputViewer.textContent = 'DOWN';
+                break;
+
+        }
+
+        // todo: make this fade after a short time to make some difficulty
+        // issues: what if you pre-emptively input it so fast that it causes the next next input to not display
+
+        // if (this.getScore() < 10) {
+        //     setTimeout(function () { inputViewer.style.transition = "opacity 0.5s"; }, 500);
+        //     setTimeout(function () { inputViewer.style.opacity = 0; }, 550);
+        // }
+        // else {
+        //     setTimeout(function () { inputViewer.style.transition = "opacity 0.1s"; }, 250);
+        //     setTimeout(function () { inputViewer.style.opacity = 0; }, 300);
+        // }
     }
 
     getCurInput() {
@@ -60,10 +88,12 @@ class Game {
     checkInput(userInput) {
         return userInput === this.curInput;
     }
+
+    //todo : add function for posting new high scores if it is greater than a user's current high score
 }
 
 const startTimer = () => {
-    timeLeft = timeLeftMax - (0.50 * Math.min(app.getScore(), 19));
+    timeLeft = timeLeftMax - (0.50 * Math.min(app.getScore(), 18));
     console.log("Time limit is: " + timeLeft)
     timer.textContent = timeLeft;
 
@@ -87,6 +117,7 @@ const startTimer = () => {
 }
 
 gameWindow.onkeydown = function(e) {
+    
     if (!app.isGameRunning()) {
         return;
     }
@@ -95,6 +126,9 @@ gameWindow.onkeydown = function(e) {
 
     if (key < 37 || key > 40) {
         return;
+    }
+    else {
+        e.preventDefault();
     }
 
     if (app.checkInput(key)) {
@@ -111,5 +145,23 @@ gameWindow.onkeydown = function(e) {
 }
 
 const app = new Game();
+
+const test = async () => {
+    const res = await fetch('/api/score', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (res.ok) {
+        let userScore = await res.json();
+        console.log(userScore);
+    }
+    else {
+        alert(res.statusText);
+    }    
+}
+
+document.querySelector('#testQuery')
+    .addEventListener("click", test);
 
 

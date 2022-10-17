@@ -1,4 +1,28 @@
+<<<<<<< HEAD
  <div class="col-md-6">
       <button id="login">Login</button>
       <button id="signup">Sign Up</button>
     </div>
+=======
+{{#if loggedIn}}
+<div id="gameWindow" class="row align-center mb-5" tabindex="0">
+
+    {{!-- <button id="startGame">Start</button>
+    <btn id="highScores">Highscores</btn> --}}
+    <h3 id="timer"> </h3>
+    <h3 id="score"> </h3>
+
+    {{!-- todo: replace with images of arrows rather than text --}}
+    <h4 id="inputViewer"> </h4>
+
+    <button id="startGame" class="btn btn-primary" onclick="app.start()">Start</button>
+
+</div>
+
+<button id="testQuery" class="btn btn-primary">Test()</button>
+
+{{!-- {{#if loggedIn}} --}}
+<script src="/js/index.js"></script>
+{{else}}
+{{/if}}
+>>>>>>> 0608c7b1dc273b125c5ce2ee17efec35f5ec7844

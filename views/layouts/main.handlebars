@@ -11,19 +11,26 @@
 </head>
 
 <body>
-  {{#if loggedIn}}
+
+
+  {{!-- this if-statement is as confusing to read as it was to understand not having the login/signup buttons appear on certain pages --}}
+    {{#if doNotShowButtons}}
     {{else}}
-    {{!-- <div class="col-md-6">
-      <button id="login">Login</button>
-      <button id="signup">Sign Up</button>
-    </div> --}}
-  {{/if}}
-    <div id="logOutDiv">
+
       {{#if loggedIn}}
-      <button id="logOut">Logout</button>
-      
+      {{!-- these buttons will appear when logged in --}}
+        <div id="userName">
+          <button id="name">{{user.name}}</button>
+          <button id="logOut">Logout</button>
+        </div>      
+      {{else}}
+      {{!-- these buttons will appear when not logged in --}}
+        <div class="col-md-6">
+          <button id="login">Login</button>
+          <button id="signup">Sign Up</button>
+        </div>
       {{/if}}
-    </div>
+    {{/if}}
     
     <div class="container">
       {{!-- {{#if loggedIn}} --}}
@@ -31,6 +38,9 @@
       {{!-- {{/if}} --}}
     </div>
 </body>
+
+<script src="/js/redirects.js"></script>
+<script src="/js/logout.js"></script>
 
 </html>
 
