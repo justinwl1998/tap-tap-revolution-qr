@@ -153,11 +153,15 @@ const test = async () => {
     });
 
     if (res.ok) {
-        return(res);
+        let userScore = await res.json();
+        console.log(userScore);
     }
     else {
         alert(res.statusText);
     }    
 }
+
+document.querySelector('#testQuery')
+    .addEventListener("click", test);
 
 
