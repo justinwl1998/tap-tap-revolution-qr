@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const { Score } = require("../../models");
+const withAuth = require("../../utils/auth");
 
 // used to get the user's current highest score
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     console.log("GET route called");
     console.log("Attempting to find user ID: " + req.session.user_id);
     try {
@@ -25,12 +26,19 @@ router.get('/', async (req, res) => {
 });
 
 // used to put a new score entry if there is no score entry in the database with the logged in user's ID
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
+    console.log("POST route called");
+    try {
+
+    }
+    catch (err) {
+        res.status(500).json(err);
+    }
 
 });
 
 // used to update a user's high score
-router.put('/', async (req, res) => {
+router.put('/', withAuth, async (req, res) => {
 
 })
 
