@@ -10,16 +10,16 @@ router.get('/', withAuth, async (req, res) => {
         const scoreData = await Score.findOne({
             where: { user_id: req.session.user_id }
         });
-        // const score = scoreData.get({ plain: true });
+        const score = scoreData.get({ plain: true });
         console.log(scoreData)
 
-        //console.log(score);
+        console.log(score);
 
         if (scoreData) {
-            return res.status(200).json(scoreData);
+            return res.status(200).json(score);
         }
         else {
-            return res.status(404).json(scoreData);
+            return res.status(404).json(score);
         }
     }
     catch (err) {
@@ -27,10 +27,16 @@ router.get('/', withAuth, async (req, res) => {
     }
 });
 
-// used to put a new score entry if there is no score entry in the database with the logged in user's ID
-router.post('/', withAuth, async (req, res) => {
+// used to put a new score entry with the logged in user's ID
+router.post('/:score', withAuth, async (req, res) => {
     console.log("POST route called");
     try {
+        const newScore = await Score.create({
+            score: req.params.score,
+            user_id: req.session.user_id,
+        });
+
+        res.status(200).json(newScore);
 
     }
     catch (err) {
@@ -40,8 +46,19 @@ router.post('/', withAuth, async (req, res) => {
 });
 
 // used to update a user's high score
-router.put('/', withAuth, async (req, res) => {
+router.put('/:score', withAuth, async (req, res) => {
+    console.log('PUT route called');
+    try {
+        const updatedScore = await Score.update({
+            score: req.params.score,
+        },
+        { where: { user_id: req.session.user_id}});
 
-})
+        res.status(200).json(updatedScore);
+    }
+    catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 module.exports = router;
