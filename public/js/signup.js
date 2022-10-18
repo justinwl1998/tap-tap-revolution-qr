@@ -24,8 +24,8 @@ document
   .querySelector(".signup-form")
   .addEventListener("submit", signupFormHandler);
 
-if (document.querySelector("#back") !== null) {
-  document.querySelector("#back").addEventListener("click", function () {
+if (document.querySelector("#signupBack") !== null) {
+  document.querySelector("#signupBack").addEventListener("click", function () {
     window.location.href = "/";
   });
 }
