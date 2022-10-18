@@ -7,11 +7,13 @@ router.get('/', withAuth, async (req, res) => {
     console.log("GET route called");
     console.log("Attempting to find user ID: " + req.session.user_id);
     try {
-        const scoreData = await Score.findByPk(req.session.user_id);
-        const score = scoreData.get({ plain: true });
+        const scoreData = await Score.findOne({
+            where: { user_id: req.session.user_id }
+        });
+        // const score = scoreData.get({ plain: true });
         console.log(scoreData)
 
-        console.log(score);
+        //console.log(score);
 
         if (scoreData) {
             return res.status(200).json(scoreData);
