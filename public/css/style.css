@@ -4,6 +4,7 @@ body {
    
 }
 
+
 #startGame, #highscore, #login, #signup, #logOut, #stats {
     background-color: rgb(15, 15, 15);
     color: white;
