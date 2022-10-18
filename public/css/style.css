@@ -50,3 +50,8 @@ body {
 #inputViewer {
     transition: opacity 0.5s;
 }
+
+h2, #email-login, #password-login, #email-signup, #password-signup, #name-signup {
+    color: white;
+    ;
+}
