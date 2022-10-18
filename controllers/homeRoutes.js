@@ -50,7 +50,7 @@ router.get("/stats", withAuth, async (req, res) => {
     res.render("personalStats", {
       loggedIn: req.session.logged_in,
       user,
-      highscore: Math.max(...scores.map(o => o.score)),
+      highscore: Math.max(Math.max(...scores.map(o => o.score)), 0),
       runs: scores.length
     });
   } catch (err) {
