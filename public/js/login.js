@@ -22,8 +22,8 @@ const loginFormHandler = async (event) => {
   }
 };
 
-if (document.querySelector("#back") !== null) {
-  document.querySelector("#back").addEventListener("click", function () {
+if (document.querySelector("#loginBack") !== null) {
+  document.querySelector("#loginBack").addEventListener("click", function () {
     window.location.href = "/";
   });
 }
