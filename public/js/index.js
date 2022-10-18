@@ -152,9 +152,16 @@ const test = async () => {
         headers: { 'Content-Type': 'application/json' },
     });
 
+    if (res.status === 404) {
+        console.log("User has no score!")
+        // call POST route function here
+        return;
+    }
+
     if (res.ok) {
+        // check to see if the score needs to be updated
         let userScore = await res.json();
-        console.log(userScore);
+        console.log(userScore.score);
     }
     else {
         alert(res.statusText);

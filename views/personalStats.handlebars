@@ -1,19 +1,16 @@
 
 <div>
-    <header><button id="name">{{name}}</button>
-    {{#if loggedIn}}
-    <button id="logOut">Logout</button>
-    {{/if}}</header>
-    <h1 id="usersName"> {{name}} </h1>
+    <h1 id="usersName"> {{user.name}} </h1>
     <div>
         <h2 id="highscore">Highest Score: {{highscore}} </h2>
         <h2 id="totalRuns">Runs: {{runs}} </h2>
         <h1 id="achievements">Achievements: </h1>
-        {{#for achievements}}
+        {{!-- we may not include this in the mvp --}}
+        {{!-- {{#for achievements}}
         <div id="achivementTypes">
             {{achievementName}} - {{achivementRequirement}}
         </div>
-        {{/for}}
+        {{/for}} --}}
     </div>
 </div>
 
