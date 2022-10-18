@@ -76,17 +76,15 @@ router.get("/scores", withAuth, async (req, res) => {
 
     // This is how to get user data to show when a user is logged in
     // its not good but it works
-    const userTest = await User.findByPk(req.session.user_id);
-    const userGet = userTest.get({ plain: true });
-
-    console.log(userGet);
+    const userData = await User.findByPk(req.session.user_id);
+    const user = userData.get({ plain: true });
 
     const scores = scoreData.map((score) => score.get({ plain: true }));
 
     res.render("highScores", {
       loggedIn: req.session.logged_in,
       scores,
-      userGet
+      user
     });
   } catch (err) {
     res.status(500).json(err);
