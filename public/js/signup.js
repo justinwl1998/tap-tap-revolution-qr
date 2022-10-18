@@ -23,3 +23,9 @@ const signupFormHandler = async (event) => {
 document
   .querySelector(".signup-form")
   .addEventListener("submit", signupFormHandler);
+
+if (document.querySelector("#back") !== null) {
+  document.querySelector("#back").addEventListener("click", function () {
+    window.location.href = "/";
+  });
+}

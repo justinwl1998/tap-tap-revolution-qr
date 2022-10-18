@@ -4,7 +4,8 @@ body {
    
 }
 
-#login, #signup, #startGame, #highScores {
+
+#startGame, #highScores, #login, #signup {
     background-color: rgb(15, 15, 15);
     color: white;
     border-color: gold;
@@ -51,7 +52,7 @@ body {
     transition: opacity 0.5s;
 }
 
-h2 {
+h2, #email-login-text, #password-login-text, #email-signup-text, #password-signup-text, #name-signup-text {
+
     color: white;
-    ;
 }
