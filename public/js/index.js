@@ -18,7 +18,7 @@ class Game {
         gameWindow.focus();
         this.score = 0;
         scoreViewer.textContent = this.score;
-        setTimeout(function () { inputViewer.style.opacity = 0; }, 250);
+        //setTimeout(function () { inputViewer.style.opacity = 0; }, 250);
         this.running = true;
         startButton.disabled = true;
         this.changeInput();
@@ -48,8 +48,8 @@ class Game {
 
     changeInput() {
         this.curInput = Math.floor(Math.random() * (40 - 37 + 1) + 37);
-        inputViewer.style.transition = "opacity 0s";
-        inputViewer.style.opacity = 1;
+        // inputViewer.style.transition = "opacity 0s";
+        // inputViewer.style.opacity = 1;
     
         switch(this.curInput) {
             case 37:
@@ -121,7 +121,7 @@ const startTimer = () => {
 
             // prevent any future inputs if this case happens
             clearInterval(timeInterval);
-            timer.textContent = "baba bboey";
+            timer.textContent = "Game Over!";
             startButton.disabled = false;
             isRunning = false;
             //document.querySelector('#debug').textContent = "game over, man"
@@ -147,21 +147,16 @@ gameWindow.onkeydown = function(e) {
     }
 
     if (app.checkInput(key)) {
-        console.log("wow you got it");
         app.incrementScore();
         clearInterval(timeInterval);
         app.changeInput();
         startTimer();
     }
     else {
-        console.log("WRONG");
         timeLeft = 0;
     }
 }
 
 const app = new Game();
-
-// document.querySelector('#testQuery')
-//     .addEventListener("click", test);
 
 

@@ -22,7 +22,9 @@
         <div id="userName" class="d-flex justify-content-between mx-2">
           <button id="highscore">Highscores</button>
 
+          {{#if gamePage}}
           <p class="fs-2 text-white">Good luck, {{user.name}}!</p>
+          {{/if}}
           <button id="logOut">Logout</button>
         </div>      
       {{else}}
