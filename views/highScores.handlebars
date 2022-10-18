@@ -1,8 +1,8 @@
-<h1>{{userGet.name}}</h1>
+<h1 id="userName-text">{{userGet.name}}</h1>
 
 {{#each scores as |score| }}
-<div class="row align-center mb-5">
-  <div class="col-md-6">
-    <h2>{{score.user.name}} with a score of {{score.score}}</h2>
+<div class="card row align-center mb-5" style="width: 18rem; background-color: black; color: white;">
+  
+  {{score.user.name}} with a score of {{score.score}}
   </div>
 {{/each}}
