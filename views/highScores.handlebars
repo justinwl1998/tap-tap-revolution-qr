@@ -1,8 +1,11 @@
+<div class="container">
 {{#each scores as |score| }}
-<div class="card row align-center mb-5" style="width: 18rem; background-color: black; color: white;">
+<div class="card row align-center mb-5 mx-auto" style="width: 18rem; background-color: black; color: white;">
   
   {{score.user.name}} with a score of {{score.score}}
   </div>
 {{/each}}
 
-<button id="back" class="btn btn-primary">Back</button>
+<button id="back" class="btn btn-primary mx-auto">Back</button>
+
+</div>
