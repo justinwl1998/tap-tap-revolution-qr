@@ -17,8 +17,9 @@
     {{else}}
       {{#if loggedIn}}
       {{!-- these buttons will appear when logged in --}}
-        <div id="userName">
-          <button id="name">{{user.name}}</button>
+        <div id="userName" class="d-flex justify-content-between mx-2">
+          <button id="highscore">Highscores</button>
+          <p class="fs-2 text-white">Goodluck {{user.name}}!</p>
           <button id="logOut">Logout</button>
         </div>      
       {{else}}
@@ -36,7 +37,7 @@
       {{!-- {{/if}} --}}
     </div>
 </body>
-
+<script src="/js/score.js"></script>
 <script src="/js/redirects.js"></script>
 <script src="/js/logout.js"></script>
 
