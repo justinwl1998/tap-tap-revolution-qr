@@ -18,7 +18,8 @@ router.get("/", async (req, res) => {
       const user = userData.get({ plain: true });
       res.render("homePage", {
         loggedIn: req.session.logged_in,
-        user
+        user,
+        gamePage: true
       });
     }
   } catch (err) {
@@ -51,7 +52,8 @@ router.get("/stats", withAuth, async (req, res) => {
       loggedIn: req.session.logged_in,
       user,
       highscore: Math.max(Math.max(...scores.map(o => o.score)), 0),
-      runs: scores.length
+      runs: scores.length,
+      gamePage: false
     });
   } catch (err) {
     res.status(500).json(err);
@@ -84,7 +86,8 @@ router.get("/scores", withAuth, async (req, res) => {
     res.render("highScores", {
       loggedIn: req.session.logged_in,
       scores,
-      user
+      user,
+      gamePage: false
     });
   } catch (err) {
     res.status(500).json(err);
@@ -93,6 +96,11 @@ router.get("/scores", withAuth, async (req, res) => {
 
 router.get("/signup", async (req, res) => {
   try {
+    if (req.session.logged_in) {
+      res.redirect('/');
+      return;
+    }
+
     res.render("signupPage", {
       doNotShowButtons: true,
       loggedIn: req.session.logged_in 
@@ -104,6 +112,11 @@ router.get("/signup", async (req, res) => {
 
 router.get("/login", async (req, res) => {
   try {
+    if (req.session.logged_in) {
+      res.redirect('/');
+      return;
+    }
+
     res.render("loginPage", {
       doNotShowButtons: true,
       loggedIn: req.session.logged_in 
