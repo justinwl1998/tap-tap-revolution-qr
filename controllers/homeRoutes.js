@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
 router.get("/stats", withAuth, async (req, res) => {
   // todo: add more queries and entries to go off of?
   try {
-    const scoreData = await Score.findOne({
+    const scoreData = await Score.findAll({
       include: [
         {
           model: User,
@@ -41,13 +41,17 @@ router.get("/stats", withAuth, async (req, res) => {
       }
     });
 
+    const scores = scoreData.map((score) => score.get({ plain: true }));
+
     const userData = await User.findByPk(req.session.user_id);
     const user = userData.get({ plain: true }); 
     
 
     res.render("personalStats", {
       loggedIn: req.session.logged_in,
-      user
+      user,
+      highscore: Math.max(...scores.map(o => o.score)),
+      runs: scores.length
     });
   } catch (err) {
     res.status(500).json(err);

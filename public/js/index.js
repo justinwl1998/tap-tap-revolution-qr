@@ -15,7 +15,6 @@ class Game {
     }
 
     start() {
-        console.log("Hah.")
         gameWindow.focus();
         this.score = 0;
         scoreViewer.textContent = this.score;
@@ -90,6 +89,21 @@ class Game {
     }
 
     //todo : add function for posting new high scores if it is greater than a user's current high score
+    async postNewScore() {
+        const res = await fetch('/api/score/' + this.getScore(), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+        });
+    
+        if (res.ok) {
+            // check to see if the score needs to be updated
+            let userScore = await res.json();
+            console.log(userScore.score);
+        }
+        else {
+            alert(res.statusText);
+        } 
+    }
 }
 
 const startTimer = () => {
@@ -112,6 +126,7 @@ const startTimer = () => {
             isRunning = false;
             //document.querySelector('#debug').textContent = "game over, man"
             console.log("Your score was: " + app.getScore());
+            app.postNewScore();
         }
     }, 10);
 }
@@ -146,29 +161,7 @@ gameWindow.onkeydown = function(e) {
 
 const app = new Game();
 
-const test = async () => {
-    const res = await fetch('/api/score', {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    });
-
-    if (res.status === 404) {
-        console.log("User has no score!")
-        // call POST route function here
-        return;
-    }
-
-    if (res.ok) {
-        // check to see if the score needs to be updated
-        let userScore = await res.json();
-        console.log(userScore.score);
-    }
-    else {
-        alert(res.statusText);
-    }    
-}
-
-document.querySelector('#testQuery')
-    .addEventListener("click", test);
+// document.querySelector('#testQuery')
+//     .addEventListener("click", test);
 
 
