@@ -73,3 +73,8 @@ h2, #email-login-text, #password-login-text, #email-signup-text, #password-signu
     z-index: -5;
     pointer-events: none;
   }
+
+  .loginContainer h1, .loginContainer h5 {
+    color: red;
+    text-decoration:underline;
+  }
