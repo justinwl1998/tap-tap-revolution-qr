@@ -21,7 +21,7 @@ In order to use this application you must be logged in.
 
 ## Deployed Application
 
-
+![CLICK HERE TO BE TAKEN TO THE WEBSITE.](https://secure-savannah-57632.herokuapp.com/)
 
 ## Contributing
 * https://github.com/justinwl1998
